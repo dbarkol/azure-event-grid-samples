@@ -29,13 +29,11 @@ namespace PublishEvents
     {
         #region Data Members
 
-        // The topic host name is used instead of the complete 
-        // endpoint address. 
+        // The custom topic host name
         // Example: {topicname}.westus2-1.eventgrid.azure.net
         private const string TopicHostName = "{topic-host-name}";
 
-        // Ideally the key should be retrieve from a secure 
-        // location like Azure Key Vault.
+        // Custom topic access key
         private const string TopicKey = "{custom-topic-access-key";
 
         #endregion
@@ -49,15 +47,12 @@ namespace PublishEvents
 
         private static async Task PublishEvents()
         {
-            // Instantiate and initialize an instance of a http client handler
-            // as well as service client credentials. The credentials we will
-            // be an instance of TopicCredentials using the topic access key.
-            var clientHandler = new HttpClientHandler { UseDefaultCredentials = true };
+            // Create service credential with the topic credential
+            // class and custom topic access key
             ServiceClientCredentials credentials = new TopicCredentials(TopicKey);
 
-            // Create an instance of the event grid client class. We will
-            // use this to send events to the custom topic.
-            var client = new EventGridClient(credentials, clientHandler);
+            // Create an instance of the event grid client class
+            var client = new EventGridClient(credentials);
 
             // Retrieve a collection of events
             var events = GetEvents();
@@ -91,7 +86,7 @@ namespace PublishEvents
                     Id = Guid.NewGuid().ToString(),
                     Data = new Musician()
                     {
-                        Name = "Jimmy Page",
+                        Name = "Slash",
                         Instruments = "Guitar"
                     },
                     EventTime = DateTime.Now,
