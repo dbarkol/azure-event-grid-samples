@@ -34,7 +34,7 @@ namespace PublishEvents
         private const string TopicHostName = "{topic-host-name}";
 
         // Custom topic access key
-        private const string TopicKey = "{custom-topic-access-key";
+        private const string TopicKey = "{custom-topic-access-key}";
 
         #endregion
 
