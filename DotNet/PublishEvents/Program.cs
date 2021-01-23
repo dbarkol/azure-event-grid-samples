@@ -31,7 +31,7 @@ namespace PublishEvents
 
         // The custom topic host name
         // Example: {topicname}.westus2-1.eventgrid.azure.net
-        private const string TopicHostName = "{topic-host-name}";
+        private const string TopicHostName = "{topic-host-name}";        
 
         // Custom topic access key
         private const string TopicKey = "{custom-topic-access-key}";
@@ -40,9 +40,9 @@ namespace PublishEvents
 
         #region Private Methods
 
-        private static void Main(string[] args)
+        private static async Task Main(string[] args)
         {
-            PublishEvents().Wait();
+            await PublishEvents();
         }
 
         private static async Task PublishEvents()
